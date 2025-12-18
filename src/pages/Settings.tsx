@@ -161,7 +161,7 @@ const Settings: React.FC = () => {
           <Card className="border-border bg-card">
             <CardHeader>
               <CardTitle>Appearance</CardTitle>
-              <CardDescription>Customize how AniVerse looks</CardDescription>
+              <CardDescription>Customize how Tomodachi looks</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">

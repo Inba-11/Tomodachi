@@ -20,8 +20,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   useEffect(() => {
     // Check for stored token on mount
-    const token = localStorage.getItem('aniverse_token');
-    const storedUser = localStorage.getItem('aniverse_user');
+    const token = localStorage.getItem('tomodachi_token');
+    const storedUser = localStorage.getItem('tomodachi_user');
     
     if (token && storedUser) {
       setState({
@@ -46,8 +46,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const user = currentUser;
     const token = 'mock_jwt_token_' + Date.now();
     
-    localStorage.setItem('aniverse_token', token);
-    localStorage.setItem('aniverse_user', JSON.stringify(user));
+    localStorage.setItem('tomodachi_token', token);
+    localStorage.setItem('tomodachi_user', JSON.stringify(user));
     
     setState({
       user,
@@ -74,8 +74,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     
     const token = 'mock_jwt_token_' + Date.now();
     
-    localStorage.setItem('aniverse_token', token);
-    localStorage.setItem('aniverse_user', JSON.stringify(newUser));
+    localStorage.setItem('tomodachi_token', token);
+    localStorage.setItem('tomodachi_user', JSON.stringify(newUser));
     
     setState({
       user: newUser,
@@ -86,8 +86,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const logout = () => {
-    localStorage.removeItem('aniverse_token');
-    localStorage.removeItem('aniverse_user');
+    localStorage.removeItem('tomodachi_token');
+    localStorage.removeItem('tomodachi_user');
     setState({
       user: null,
       token: null,

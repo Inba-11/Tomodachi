@@ -52,7 +52,7 @@ const Register: React.FC = () => {
     try {
       await register(formData.username, formData.email, formData.password);
       toast({
-        title: 'Welcome to AniVerse!',
+        title: 'Welcome to Tomodachi!',
         description: 'Your account has been created successfully.',
       });
       navigate('/');
@@ -72,7 +72,7 @@ const Register: React.FC = () => {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2">
             <span className="text-4xl">🎌</span>
-            <span className="text-3xl font-bold gradient-text">AniVerse</span>
+            <span className="text-3xl font-bold gradient-text">Tomodachi</span>
           </Link>
           <p className="text-muted-foreground mt-2">Join the anime community!</p>
         </div>

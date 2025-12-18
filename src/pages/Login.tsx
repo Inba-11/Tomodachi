@@ -52,7 +52,7 @@ const Login: React.FC = () => {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2">
             <span className="text-4xl">🎌</span>
-            <span className="text-3xl font-bold gradient-text">AniVerse</span>
+            <span className="text-3xl font-bold gradient-text">Tomodachi</span>
           </Link>
           <p className="text-muted-foreground mt-2">Welcome back, otaku!</p>
         </div>
