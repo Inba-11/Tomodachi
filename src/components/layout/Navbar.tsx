@@ -42,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
           
           <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl">🎌</span>
-            <span className="hidden font-bold text-xl gradient-text sm:inline">AniVerse</span>
+            <span className="hidden font-bold text-xl gradient-text sm:inline">Tomodachi</span>
           </Link>
         </div>
 

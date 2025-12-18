@@ -11,7 +11,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    const stored = localStorage.getItem('aniverse_theme') as Theme;
+    const stored = localStorage.getItem('tomodachi_theme') as Theme;
     return stored || 'dark';
   });
 
@@ -19,7 +19,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     const root = document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
-    localStorage.setItem('aniverse_theme', theme);
+    localStorage.setItem('tomodachi_theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {

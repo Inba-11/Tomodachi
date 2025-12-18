@@ -108,7 +108,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
           {/* Footer */}
           <div className="absolute bottom-0 left-0 right-0 p-4 text-xs text-muted-foreground">
-            <p>© 2024 AniVerse</p>
+            <p>© 2024 Tomodachi</p>
             <p className="mt-1">Made with 💜 for anime fans</p>
           </div>
         </ScrollArea>

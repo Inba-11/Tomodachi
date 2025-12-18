@@ -14,7 +14,7 @@ const api: AxiosInstance = axios.create({
 // Request interceptor - add auth token
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('aniverse_token');
+    const token = localStorage.getItem('tomodachi_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -32,8 +32,8 @@ api.interceptors.response.use(
     switch (status) {
       case 401:
         // Unauthorized - clear auth and redirect
-        localStorage.removeItem('aniverse_token');
-        localStorage.removeItem('aniverse_user');
+        localStorage.removeItem('tomodachi_token');
+        localStorage.removeItem('tomodachi_user');
         window.location.href = '/login';
         toast({
           title: 'Session Expired',
