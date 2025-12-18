@@ -21,7 +21,7 @@ const Profile: React.FC = () => {
   return (
     <div className="animate-fade-in -mx-4 -mt-6">
       {/* Banner */}
-      <div className="relative h-32 md:h-48 bg-gradient-to-r from-neon-purple/30 via-neon-pink/30 to-neon-blue/30">
+      <div className="relative h-32 md:h-48 bg-gradient-to-r from-[color-mix(in_srgb,var(--accent-primary)30%,transparent)] via-[color-mix(in_srgb,var(--accent-emotion)30%,transparent)] to-[color-mix(in_srgb,var(--accent-secondary)30%,transparent)]">
         {user.banner && (
           <img src={user.banner} alt="Banner" className="w-full h-full object-cover" />
         )}

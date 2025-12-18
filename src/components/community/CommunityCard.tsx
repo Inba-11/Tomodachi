@@ -88,7 +88,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ community, variant = 'def
               <span>{formatNumber(community.memberCount)} members</span>
             </div>
             <div className="flex items-center gap-1">
-              <span className="h-2 w-2 rounded-full bg-neon-green animate-pulse" />
+              <span className="h-2 w-2 rounded-full bg-[color:var(--accent-secondary)] animate-pulse" />
               <span>{formatNumber(community.onlineCount)} online</span>
             </div>
           </div>

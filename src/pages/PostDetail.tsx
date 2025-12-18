@@ -51,7 +51,7 @@ const PostDetail: React.FC = () => {
         );
       case 'audio':
         return (
-          <div className="rounded-lg bg-gradient-to-r from-neon-purple/20 to-neon-blue/20 p-8 flex items-center justify-center gap-4">
+          <div className="rounded-lg bg-gradient-to-r from-[color-mix(in_srgb,var(--accent-primary)20%,transparent)] to-[color-mix(in_srgb,var(--accent-secondary)20%,transparent)] p-8 flex items-center justify-center gap-4">
             <div className="h-16 w-16 rounded-full bg-primary flex items-center justify-center">
               <Music className="h-8 w-8 text-primary-foreground" />
             </div>
@@ -129,7 +129,10 @@ const PostDetail: React.FC = () => {
             </Button>
             <Button
               variant="ghost"
-              className={cn("gap-2 ml-auto", isSaved && "text-neon-green")}
+              className={cn(
+                "gap-2 ml-auto hover:bg-[color-mix(in_srgb,var(--accent-secondary)10%,transparent)] hover:text-[color:var(--accent-secondary)]",
+                isSaved && "text-[color:var(--accent-secondary)]"
+              )}
               onClick={() => setIsSaved(!isSaved)}
             >
               <Bookmark className={cn("h-5 w-5", isSaved && "fill-current")} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Image, Video, Music, FileText, Upload, X, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -16,6 +16,9 @@ import {
 import { mockCommunities } from '@/data/mockData';
 import { toast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+import { usePostDraft } from '@/hooks/usePostDraft';
+import { validateMedia } from '@/utils/mediaValidation';
+import { MarkdownEditor } from '@/components/post/MarkdownEditor';
 
 type PostType = 'text' | 'image' | 'video' | 'audio';
 
@@ -29,18 +32,32 @@ const postTypes = [
 const CreatePost: React.FC = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [postType, setPostType] = useState<PostType>('text');
+  const { draft, updateField, clearDraft } = usePostDraft();
+  const [postType, setPostType] = useState<PostType>(draft.postType);
   const [formData, setFormData] = useState({
-    title: '',
-    content: '',
-    community: '',
+    title: draft.title,
+    content: draft.content,
+    community: draft.communityId ?? '',
   });
   const [mediaFile, setMediaFile] = useState<File | null>(null);
   const [mediaPreview, setMediaPreview] = useState<string | null>(null);
+  const selectedCommunity = mockCommunities.find(c => c.id === formData.community);
+
+  useEffect(() => {
+    updateField('title', formData.title);
+    updateField('content', formData.content);
+    updateField('postType', postType);
+    updateField('communityId', formData.community || null);
+  }, [formData.title, formData.content, formData.community, postType]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      const result = validateMedia(file, postType === 'image' ? 'image' : postType === 'video' ? 'video' : 'audio');
+      if (!result.valid) {
+        toast({ title: 'Invalid media', description: result.error, variant: 'destructive' });
+        return;
+      }
       setMediaFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -63,9 +80,27 @@ const CreatePost: React.FC = () => {
       return;
     }
 
+    if (formData.title.trim().length < 5) {
+      toast({ title: 'Title too short', description: 'Titles should be at least 5 characters.', variant: 'destructive' });
+      return;
+    }
+
     if (!formData.community) {
       toast({ title: 'Error', description: 'Please select a community', variant: 'destructive' });
       return;
+    }
+
+    // Simple community rule awareness (example: require spoiler mention if rules mention spoilers)
+    if (selectedCommunity?.rules?.some(rule => rule.toLowerCase().includes('spoiler'))) {
+      const hasSpoilerTag = /\[spoiler\]|\>!.*!\</i.test(formData.content);
+      if (!hasSpoilerTag) {
+        toast({
+          title: 'Spoiler rules',
+          description: 'This community requires spoiler tags. Please use [spoiler] or >!spoiler!< syntax if needed.',
+          variant: 'destructive',
+        });
+        return;
+      }
     }
 
     setIsSubmitting(true);
@@ -74,6 +109,7 @@ const CreatePost: React.FC = () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     toast({ title: 'Success!', description: 'Your post has been created.' });
+    clearDraft();
     navigate('/');
     setIsSubmitting(false);
   };
@@ -152,12 +188,9 @@ const CreatePost: React.FC = () => {
               <Label htmlFor="content">
                 {postType === 'text' ? 'Content' : 'Description (optional)'}
               </Label>
-              <Textarea
-                id="content"
-                placeholder="Share your thoughts..."
+              <MarkdownEditor
                 value={formData.content}
-                onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                rows={6}
+                onChange={(value) => setFormData({ ...formData, content: value })}
               />
             </div>
 
@@ -216,6 +249,18 @@ const CreatePost: React.FC = () => {
                     />
                   </label>
                 )}
+              </div>
+            )}
+
+            {/* Community Rules */}
+            {selectedCommunity?.rules && (
+              <div className="rounded-lg border border-border bg-secondary/10 p-3 text-xs text-muted-foreground space-y-1">
+                <p className="font-medium text-foreground text-sm">Community rules</p>
+                <ul className="list-disc list-inside space-y-0.5">
+                  {selectedCommunity.rules.map((rule, index) => (
+                    <li key={index}>{rule}</li>
+                  ))}
+                </ul>
               </div>
             )}
 

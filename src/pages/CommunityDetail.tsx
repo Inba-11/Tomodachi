@@ -65,7 +65,7 @@ const CommunityDetail: React.FC = () => {
             <span className="text-muted-foreground">members</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-neon-green animate-pulse" />
+            <span className="h-2 w-2 rounded-full bg-[color:var(--accent-secondary)] animate-pulse" />
             <span className="font-semibold">{formatNumber(community.onlineCount)}</span>
             <span className="text-muted-foreground">online</span>
           </div>

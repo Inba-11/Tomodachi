@@ -73,7 +73,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         );
       case 'audio':
         return (
-          <div className="relative h-24 overflow-hidden rounded-lg bg-gradient-to-r from-neon-purple/20 to-neon-blue/20 flex items-center justify-center gap-4">
+          <div className="relative h-24 overflow-hidden rounded-lg bg-gradient-to-r from-[color-mix(in_srgb,var(--accent-primary)20%,transparent)] to-[color-mix(in_srgb,var(--accent-secondary)20%,transparent)] flex items-center justify-center gap-4">
             <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center">
               <Music className="h-6 w-6 text-primary-foreground" />
             </div>
@@ -175,8 +175,8 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
             variant="ghost"
             size="sm"
             className={cn(
-              "gap-2 hover:bg-neon-green/10 hover:text-neon-green ml-auto",
-              isSaved && "text-neon-green"
+              "gap-2 hover:bg-[color-mix(in_srgb,var(--accent-secondary)10%,transparent)] hover:text-[color:var(--accent-secondary)] ml-auto",
+              isSaved && "text-[color:var(--accent-secondary)]"
             )}
             onClick={handleSave}
           >
