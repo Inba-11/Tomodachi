@@ -92,7 +92,7 @@ const CreatePost: React.FC = () => {
 
     // Simple community rule awareness (example: require spoiler mention if rules mention spoilers)
     if (selectedCommunity?.rules?.some(rule => rule.toLowerCase().includes('spoiler'))) {
-      const hasSpoilerTag = /\[spoiler\]|\>!.*!\</i.test(formData.content);
+      const hasSpoilerTag = /\[spoiler\]|>!.*!</i.test(formData.content);
       if (!hasSpoilerTag) {
         toast({
           title: 'Spoiler rules',

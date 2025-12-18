@@ -21,6 +21,8 @@ export interface Community {
   rules?: string[];
 }
 
+export type PostMood = 'hype' | 'emotional' | 'plot_twist' | 'dark' | null;
+
 export interface Post {
   id: string;
   title: string;
@@ -34,6 +36,7 @@ export interface Post {
   isLiked: boolean;
   isSaved: boolean;
   createdAt: string;
+  mood?: PostMood;
 }
 
 export interface Comment {

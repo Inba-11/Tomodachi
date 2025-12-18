@@ -33,15 +33,18 @@ const Feed: React.FC = () => {
         return sortByTop;
       case "rising":
         return sortByRising;
+      default:
+        return sortByHot;
     }
   };
 
   const filtered = useMemo(() => {
     let posts = [...mockPosts];
     if (mood) {
-      posts = posts.filter((p) => (p as any).mood === mood);
+      posts = posts.filter((p) => p.mood === mood);
     }
-    return sortFn(state.tab as FeedSort)(posts);
+    const sorter = sortFn(state.tab as FeedSort);
+    return sorter(posts);
   }, [mood, state.tab]);
 
   const isLoading = false;

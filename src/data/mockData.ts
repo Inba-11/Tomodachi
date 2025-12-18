@@ -111,6 +111,7 @@ export const mockPosts: Post[] = [
     isLiked: false,
     isSaved: false,
     createdAt: '2024-01-15T10:30:00Z',
+    mood: 'hype',
   },
   {
     id: '2',
@@ -124,6 +125,7 @@ export const mockPosts: Post[] = [
     isLiked: true,
     isSaved: true,
     createdAt: '2024-01-14T18:45:00Z',
+    mood: 'emotional',
   },
   {
     id: '3',
@@ -137,6 +139,7 @@ export const mockPosts: Post[] = [
     isLiked: false,
     isSaved: false,
     createdAt: '2024-01-13T09:15:00Z',
+    mood: 'plot_twist',
   },
   {
     id: '4',
@@ -151,6 +154,7 @@ export const mockPosts: Post[] = [
     isLiked: true,
     isSaved: false,
     createdAt: '2024-01-12T14:20:00Z',
+    mood: 'hype',
   },
   {
     id: '5',
@@ -164,6 +168,7 @@ export const mockPosts: Post[] = [
     isLiked: false,
     isSaved: true,
     createdAt: '2024-01-11T21:00:00Z',
+    mood: 'dark',
   },
   {
     id: '6',
@@ -178,6 +183,7 @@ export const mockPosts: Post[] = [
     isLiked: true,
     isSaved: false,
     createdAt: '2024-01-10T16:30:00Z',
+    mood: 'hype',
   },
 ];
 
